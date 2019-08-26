@@ -1,0 +1,19 @@
+<p class="vsm-titulo">Gestão de Clientes</p>
+  <p-table [value]="clientes">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Cidade</th>
+        <th>Sexo</th>
+        <th>Pontuação</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cli>
+      <tr>
+        <td>{{cli.nome}}</td>
+        <td>{{cli.endereco.cidade}}</td>
+        <td>{{cli.sexo}}</td>
+        <td>{{cli.pontuacao}}</td>
+      </tr>
+    </ng-template>
+  </p-table>

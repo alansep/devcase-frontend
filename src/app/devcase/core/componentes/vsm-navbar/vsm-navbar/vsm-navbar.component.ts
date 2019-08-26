@@ -35,4 +35,9 @@ export class VsmNavbarComponent implements OnInit {
     this.mensagensService.exibirMensagem('Usuário desconectado com sucesso!');
     this.router.navigate(['/login']);
   }
+
+  public irPara(endereco: string){
+    this.router.navigate([endereco]);
+
+  }
 }
