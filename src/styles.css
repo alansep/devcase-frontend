@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+html,
+body {
+  height: 100%;
+  background-color: #f0f0f0 !important;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.flex-config{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vsm-titulo{
+  color: #d5343a;
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+
+snack-bar-container.custom-class {
+  background: #374f78;
+}
+
+.custom-class .mat-simple-snackbar {
+  color: white;
+}

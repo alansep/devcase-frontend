@@ -1,0 +1,26 @@
+.barra-form{
+  width: 4px;
+  height: calc(100% + 40px);
+  margin-left: -20px;
+  margin-right: 14px;
+  background-image: linear-gradient(to bottom, #d5343a, #374f78);
+}
+
+.corpo {
+  background-color: #ffffff;
+  height: 350px;
+  width: 100%;
+  box-shadow: 1px 1px 5px #6b6b6b;
+  padding: 20px;
+}
+
+.input-width {
+  width: 100%;
+}
+
+.flex-vertical-config {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
