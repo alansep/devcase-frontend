@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 import { Http, Headers } from '@angular/http';
 import { LocalStorageService } from './local-storage.service';
 
+/**
+ * @author Gabriel Alan
+ * @description Classe de Serviço que tem como função obter e remover o token de autenticação do usuário.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +17,10 @@ export class AutenticacaoService {
 
   constructor(private http: HttpClient, private oldHttp: Http, private localStorageService: LocalStorageService) {}
 
+  /**
+   * Método que tem como função buscar um token ao usuário utilizando suas credenciais.
+   * @param dados 
+   */
   public logar(dados: Credencial): Observable<any> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -25,6 +33,9 @@ export class AutenticacaoService {
     });
   }
 
+  /**
+   * Método que tem como função chamar a rotina de remoção de token.
+   */
   public deslogar(): void {
     this.localStorageService.removerToken();
   }

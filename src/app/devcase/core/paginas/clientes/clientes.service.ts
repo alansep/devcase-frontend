@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../../modelos/cliente';
 import { environment } from 'src/environments/environment';
-import { AutenticacaoService } from '../../autenticacao/autenticacao/autenticacao.service';
 import { LocalStorageService } from '../../autenticacao/autenticacao/local-storage.service';
 import { Paginacao } from '../../modelos/paginacao';
 import { Estado } from '../../modelos/estado';
@@ -13,6 +12,9 @@ import { Venda } from '../../modelos/venda';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Classe de Serviço de Clientes
+ */
 export class ClientesService {
   constructor(
     private http: HttpClient,
@@ -51,8 +53,6 @@ export class ClientesService {
   }
 
   public atualizarCliente(cliente: Cliente): Observable<Cliente> {
-    console.log('lalala', cliente);
-
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer ' + this.localStorageService.lerToken());

@@ -10,8 +10,15 @@ import { Venda } from 'src/app/devcase/core/modelos/venda';
   templateUrl: './venda-cliente.component.html',
   styleUrls: ['./venda-cliente.component.css']
 })
-export class VendaClienteComponent implements OnInit {
 
+/**
+ * @author Gabriel Alan
+ * @description Classe de Componente da Página de Venda.
+ */
+export class VendaClienteComponent implements OnInit {
+  /**
+   * @description Variável que tem como função receber o id por parâmetro de roteamento.
+   */
   private idCliente: number;
 
   constructor(
@@ -24,32 +31,50 @@ export class VendaClienteComponent implements OnInit {
     this.title.setTitle('Vendas');
   }
 
+  /**
+   * @description No ngOnInit, a variável idCliente recebe o id do cliente
+   *  informado por parâmetro através de roteamento;
+   */
   ngOnInit() {
-    this.route.params.subscribe(response => this.idCliente = Number.parseInt(response.id));
+    this.route.params.subscribe(
+      response => (this.idCliente = Number.parseInt(response.id))
+    );
   }
 
+  /**
+ * @description  Método que tem como função obter os dados do formulário de Venda, estruturar e registrá-los
+ *  como uma nova venda, bonificando ou não(caso o valor não esteja dentro de uma regra) o cliente.
+ */
   public registrarVenda(valores: any): void {
-    let venda = new Venda();
+    const venda = new Venda();
     venda.cliente.codigo = this.idCliente;
     venda.data = this.obterData(valores.data);
     venda.valor = valores.valor;
-    console.log(venda);
-    
-    this.clientesService.registrarVenda(venda).subscribe(() => {
-      this.mensagensService.exibirMensagem('Venda cadastrada com sucesso!');
-      this.router.navigate(['/clientes']);
-    }, () => this.mensagensService.exibirMensagem('Erro ao cadastrar venda!'));
+
+    this.clientesService.registrarVenda(venda).subscribe(
+      () => {
+        this.mensagensService.exibirMensagem('Venda cadastrada com sucesso!');
+        this.router.navigate(['/clientes']);
+      },
+      () => this.mensagensService.exibirMensagem('Erro ao cadastrar venda!')
+    );
   }
 
-  private obterData(data: Date) {
-    let res = data
+  /**
+   * @description Método que tem como função obter uma data de Javascript e transformála em uma data no 
+   *  padrão yyyy/MM/dd, no formato de string.
+   * @param data 
+   * @returns data: String
+   */
+  private obterData(data: Date): string {
+    const res = data
       .toISOString()
       .slice(0, 10)
       .replace(/-/g, '');
-    let ano = res.slice(0,4);
-    let mes = res.slice(4,6);
-    let dia = res.slice(6,9);
-    let dataRetorno = dia + '/' + mes + '/' + ano;
+    const ano = res.slice(0, 4);
+    const mes = res.slice(4, 6);
+    const dia = res.slice(6, 9);
+    const dataRetorno = dia + '/' + mes + '/' + ano;
     return dataRetorno;
   }
 }

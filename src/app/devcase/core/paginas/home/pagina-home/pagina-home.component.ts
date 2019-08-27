@@ -9,14 +9,19 @@ import { VsmNavbarService } from 'src/app/devcase/core/componentes/vsm-navbar/se
   templateUrl: './pagina-home.component.html',
   styleUrls: ['./pagina-home.component.css']
 })
+/**
+ * @author Gabriel Alan
+ * @description Classe de Componente da Página Home
+ */
 export class PaginaHomeComponent implements OnInit {
-  constructor(
-    private title: Title
-  ) {
+  constructor(private title: Title) {
     this.title.setTitle('Início');
   }
 
+  /**
+   * @description No ngOnInit um evento de troca de navbar é emitido.
+   */
   ngOnInit() {
-    VsmNavbarService.trocaDeEstado.emit(1);  
+    VsmNavbarService.trocaDeEstado.emit(1);
   }
 }

@@ -11,6 +11,11 @@ import { MensagensService } from '../../../servicos/mensagens.service';
   templateUrl: './vsm-form-login.component.html',
   styleUrls: ['./vsm-form-login.component.css']
 })
+
+/**
+ * @author Gabriel Alan
+ * @description Classe do componente de Login!
+ */
 export class VsmFormLoginComponent implements OnInit {
   constructor(
     private autenticacaoService: AutenticacaoService,
@@ -24,6 +29,11 @@ export class VsmFormLoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * @description Método que tem como função receber os dados do formulário e 
+   *  obter um token de acesso à aplicação!
+   * @param valores Valores do formulário
+   */
   public logar(valores: any): void {
     const credencial = new Credencial();
     credencial.usuario = valores.usuario;

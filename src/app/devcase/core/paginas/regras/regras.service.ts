@@ -8,12 +8,19 @@ import { LocalStorageService } from '../../autenticacao/autenticacao/local-stora
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * @author Gabriel Alan
+ * @description Classe de Serviço de Regras
+ */
 export class RegrasService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
   ) {}
 
+  /**
+   * @description Método que tem como função buscar todas as regras cadastradas na aplicação.
+   */
   public buscarRegras(): Observable<Regra[]> {
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')
@@ -23,6 +30,9 @@ export class RegrasService {
     });
   }
 
+   /**
+   * @description Método que tem como função buscar o valor mínimo permitido para uma nova regra ser criada.
+   */
   public buscarValorMinimo(): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')
@@ -32,6 +42,10 @@ export class RegrasService {
     });
   }
 
+
+   /**
+   * @description Método que tem como função adicionar uma nova regra.
+   */
   public adicionarRegra(valor: number, pontos: number): Observable<Regra> {
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')
@@ -41,6 +55,10 @@ export class RegrasService {
     });
   }
 
+  /**
+   * @description Método que tem como função remover uma regra atráves de seu código.
+   * @param id Código da Regra
+   */
   public removerRegra(id: number): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')

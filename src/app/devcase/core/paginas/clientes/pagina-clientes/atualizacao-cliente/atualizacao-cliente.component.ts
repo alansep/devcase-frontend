@@ -9,9 +9,20 @@ import { MensagensService } from 'src/app/devcase/core/servicos/mensagens.servic
   templateUrl: './atualizacao-cliente.component.html',
   styleUrls: ['./atualizacao-cliente.component.css']
 })
+/**
+ * @author Gabriel Alan
+ * @description Classe de Componente da Página de Atualização de Clientes.
+ */
 export class AtualizacaoClienteComponent implements OnInit {
+  /**
+   * @description Cliente utuilizado para atualização dos dados
+   */
   public cliente = new Cliente();
-  public opcoesSexo = [
+
+  /**
+   * @description Objeto do tipo any, utilizado apenas para a caixa de seleção de sexo.
+   */
+  public opcoesSexo: any = [
     { value: 'M', viewValue: 'Masculino' },
     { value: 'F', viewValue: 'Feminino' }
   ];
@@ -23,6 +34,10 @@ export class AtualizacaoClienteComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * @description No ngOnInit é realizado uma busca de cliente
+   *  através do id passado por parâmetro pelo roteamento.
+   */
   ngOnInit(): void {
     this.route.params.subscribe(res => {
       this.clientesService
@@ -31,10 +46,13 @@ export class AtualizacaoClienteComponent implements OnInit {
     });
   }
 
-  public atualizarCliente(): void {
-    this.clientesService.atualizarCliente(this.cliente).subscribe(() => {
-      this.router.navigate(['/clientes']);
-      this.mensagensService.exibirMensagem('Cliente atualizado com sucesso!');
-    }, () => this.mensagensService.exibirMensagem('Erro ao atualizar cliente!'));
+   public atualizarCliente(): void {
+    this.clientesService.atualizarCliente(this.cliente).subscribe(
+      () => {
+        this.router.navigate(['/clientes']);
+        this.mensagensService.exibirMensagem('Cliente atualizado com sucesso!');
+      },
+      () => this.mensagensService.exibirMensagem('Erro ao atualizar cliente!')
+    );
   }
 }
