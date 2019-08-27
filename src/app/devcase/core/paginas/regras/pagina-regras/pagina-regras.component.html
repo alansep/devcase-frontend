@@ -1,0 +1,19 @@
+<p class="vsm-titulo">Regras de Pontuação</p>
+<p-table #tabela [value]="regras">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>Valor Mínimo</th>
+      <th>Valor Máximo</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-reg>
+    <tr>
+      <td>{{reg.codigo}}</td>
+      <td>{{reg.valorMinimo}}</td>
+      <td>{{reg.valorMaximo}}</td>
+      <td><button mat-raised-button style="background-color:#d5343a; color:white" (click)="excluirRegra(reg.codigo)">X</button></td>
+    </tr>
+  </ng-template>
+</p-table>

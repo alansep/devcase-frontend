@@ -1,5 +1,12 @@
-<p-dialog header="Cadastrar Cliente" [(visible)]="dialogCriacao" [closable]="false" [modal]="true">
-  <form #criacaoForm="ngForm" (ngSubmit)="cadastrar(criacaoForm.value)" style="width: 700px">
+<p-dialog [(visible)]="dialogCriacao" [closable]="false" [modal]="true">
+  <p-header>
+    <div class="flex-config">
+      <span>Cadastrar Cliente</span>
+      <button mat-raised-button style="background-color:#d5343a; color:white;"
+        (click)="dialogCriacao = false;">Voltar</button>
+    </div>
+  </p-header>
+  <form #criacaoForm="ngForm" (ngSubmit)="cadastrar(criacaoForm.value, criacaoForm);" style="width: 700px">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-sm-8">
@@ -37,7 +44,7 @@
             <mat-label>Estado</mat-label>
             <mat-select #estado required name="estado" ngModel #estado="ngModel">
               <mat-option *ngFor="let estado of estados" [value]="estado.id"
-                (onSelectionChange)="buscarCidades(estado.id); cidade.value = ''">
+                (click)="buscarCidades(estado.id); cidade.value = ''">
                 {{estado.estado}}
               </mat-option>
             </mat-select>
@@ -71,17 +78,18 @@
         </div>
         <div class="col-12 col-sm-3">
           <mat-form-field class="input-fluid">
-            <input type="number" matInput type="tel" placeholder="Complemento"  name="complemento" ngModel
+            <input type="number" matInput type="tel" placeholder="Complemento" name="complemento" ngModel
               #complemento="ngModel">
           </mat-form-field>
         </div>
-        <div class="col-12 col-sm-4 offset-sm-8">
+        <div class="col-12 col-sm-2 offset-sm-10">
           <button mat-raised-button type="submit" color="primary" [disabled]="!criacaoForm.valid">Cadastrar</button>
         </div>
       </div>
     </div>
   </form>
 </p-dialog>
+
 
 <div class="flex-config">
   <p class="vsm-titulo">Gestão de Clientes</p>
@@ -90,31 +98,31 @@
 <p-table #tabela [value]="conteudoTabela.content" [rows]="conteudoTabela.numberOfElements"
   [globalFilterFields]="['nome','cidade','sexo', 'pontuacao']">
   <ng-template pTemplate="caption">
-    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-    <input type="text" pInputText size="50" placeholder="Global Filter"
-      (input)="tabela.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    <div style="text-align: left; width: 100%;">
+      <div class="icone-pesquisa">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      </div>
+      <input type="text" class="barra-pesquisa" pInputText placeholder="Pesquisar Informação"
+        (input)="tabela.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th>Nome</th>
-      <th>Cidade</th>
-      <th>Sexo</th>
-      <th>Pontuação</th>
-      <th>Ações</th>
+      <th>Localização</th>
+      <th style="width: 100px;">Pontuação</th>
+      <th>Outras Informações</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-cli>
     <tr>
       <td>{{cli.nome}}</td>
-      <td>{{cli.endereco.cidade}}</td>
-      <td>{{cli.sexo}}</td>
-      <td>{{cli.pontuacao}}</td>
+      <td>{{cli.endereco.cidade}}/{{cli.endereco.estado}}</td>
+      <td style="text-align: center;font-weight: 700">{{cli.pontuacao}}</td>
       <td>
         <div class="flex-config">
-          <button mat-raised-button color="primary" class="botao-opcao"><i class="fa fa-info"
-              aria-hidden="true"></i></button>
-          <button mat-raised-button color="primary" class="botao-opcao"><i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
+          <button mat-raised-button color="primary" class="botao-opcao" (click)="buscarCliente(cli.codigo)"><i
+              class="fa fa-info" aria-hidden="true"></i></button>
         </div>
       </td>
     </tr>

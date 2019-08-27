@@ -21,6 +21,25 @@ export class ClientesService {
     return this.http.get<Paginacao<Cliente[]>>(environment.API_ENDERECO + '/clientes', {headers: header});
   }
 
+  public buscarCliente(codigo:string): Observable<Cliente> {
+    let header = new HttpHeaders().set("Content-Type","application/json").set("Authorization","Bearer " + this.localStorageService.lerToken());
+    return this.http.get<Cliente>(environment.API_ENDERECO + '/clientes/'+ codigo, {headers: header});
+  }
+
+  public cadastrarCliente(cliente: Cliente): Observable<Cliente> {
+    let header = new HttpHeaders().set("Content-Type","application/json").set("Authorization","Bearer " + this.localStorageService.lerToken());
+    return this.http.post<Cliente>(environment.API_ENDERECO  + '/clientes', cliente, {headers: header});
+  }
+
+  public atualizarCliente(cliente: Cliente): Observable<Cliente> {
+    console.log('lalala', cliente);
+    
+    let header = new HttpHeaders().set("Content-Type","application/json").set("Authorization","Bearer " + this.localStorageService.lerToken());
+    return this.http.put<Cliente>(environment.API_ENDERECO  + '/clientes/' + cliente.codigo, cliente, {headers: header});
+
+  
+  }
+
   public buscarEstados(): Observable<Estado[]> {
     let header = new HttpHeaders().set("Content-Type","application/json").set("Authorization","Bearer " + this.localStorageService.lerToken());
     return this.http.get<Estado[]>(environment.API_ENDERECO + '/localizacao/UF', {headers: header});

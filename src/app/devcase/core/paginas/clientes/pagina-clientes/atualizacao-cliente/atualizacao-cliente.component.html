@@ -1,0 +1,73 @@
+<br><br>
+
+<mat-card>
+  <mat-card-title>Atualização de Cliente</mat-card-title>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-8">
+        <mat-form-field class="input-fluid">
+          <input matInput placeholder="Nome" [(ngModel)]="cliente.nome">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-4">
+        <mat-form-field>
+          <mat-label>Sexo</mat-label>
+          <mat-select [(ngModel)]="cliente.sexo">
+            <mat-option *ngFor="let sexo of opcoesSexo" [value]="sexo.value">
+              {{sexo.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-2">
+        <mat-form-field class="input-fluid">
+          <input matInput type="number" placeholder="Idade" [(ngModel)]="cliente.idade">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-5">
+        <mat-form-field class="input-fluid">
+          <input matInput type="email" placeholder="E-mail" email [(ngModel)]="cliente.email">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-5">
+        <mat-form-field class="input-fluid">
+          <input matInput type="tel" placeholder="Telefone" [(ngModel)]="cliente.telefone">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-4">
+        <mat-form-field class="input-fluid">
+          <input matInput placeholder="Estado" [(ngModel)]="cliente.endereco.estado">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-4">
+        <mat-form-field class="input-fluid">
+          <input matInput placeholder="Cidade" [(ngModel)]="cliente.endereco.cidade">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-4">
+        <mat-form-field class="input-fluid">
+          <input matInput placeholder="Bairro" [(ngModel)]="cliente.endereco.bairro">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-6">
+        <mat-form-field class="input-fluid">
+          <input matInput placeholder="Rua" [(ngModel)]="cliente.endereco.rua">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-3">
+        <mat-form-field class="input-fluid">
+          <input type="number" matInput type="tel" placeholder="Número" [(ngModel)]="cliente.endereco.numero">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-3">
+        <mat-form-field class="input-fluid">
+          <input type="number" matInput type="tel" placeholder="Complemento" [(ngModel)]="cliente.endereco.complemento">
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-sm-3 offset-sm-9">
+        <button mat-raised-button color="primary" (click)="atualizarCliente();">Atualizar Cliente</button>
+      </div>
+    </div>
+  </div>
+</mat-card>
