@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AuthGuard } from './devcase/core/roteamento/auth.guard';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
     VsmNavbarModule,
     HttpClientModule,
     HttpModule,
+    AngularFontAwesomeModule
   ],
   providers: [AuthGuard, JwtHelperService],
   bootstrap: [AppComponent]

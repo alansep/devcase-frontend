@@ -1,0 +1,9 @@
+table{
+    width: 100%;
+}
+
+.botao-opcao{
+    width: calc(50% - 6px);
+    margin-left: 3px;
+    margin-right: 3px;
+}

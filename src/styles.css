@@ -35,3 +35,12 @@ snack-bar-container.custom-class {
 .custom-class .mat-simple-snackbar {
   color: white;
 }
+
+
+.input-fluid{
+  width: 100%;
+}
+
+.cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}

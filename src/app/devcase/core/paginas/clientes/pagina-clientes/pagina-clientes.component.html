@@ -1,19 +1,124 @@
-<p class="vsm-titulo">Gestão de Clientes</p>
-  <p-table [value]="clientes">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Nome</th>
-        <th>Cidade</th>
-        <th>Sexo</th>
-        <th>Pontuação</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-cli>
-      <tr>
-        <td>{{cli.nome}}</td>
-        <td>{{cli.endereco.cidade}}</td>
-        <td>{{cli.sexo}}</td>
-        <td>{{cli.pontuacao}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+<p-dialog header="Cadastrar Cliente" [(visible)]="dialogCriacao" [closable]="false" [modal]="true">
+  <form #criacaoForm="ngForm" (ngSubmit)="cadastrar(criacaoForm.value)" style="width: 700px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <mat-form-field class="input-fluid">
+            <input matInput placeholder="Nome" name="nome" ngModel #nome="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-4">
+          <mat-form-field>
+            <mat-label>Sexo</mat-label>
+            <mat-select required name="sexo" ngModel #sexo="ngModel">
+              <mat-option *ngFor="let sexo of opcoesSexo" [value]="sexo.value">
+                {{sexo.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-2">
+          <mat-form-field class="input-fluid">
+            <input matInput type="number" placeholder="Idade" required name="idade" ngModel #idade="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-5">
+          <mat-form-field class="input-fluid">
+            <input matInput type="email" placeholder="E-mail" required email name="email" ngModel #email="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-5">
+          <mat-form-field class="input-fluid">
+            <input matInput type="tel" placeholder="Telefone" required name="telefone" ngModel #telefone="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-4">
+          <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select #estado required name="estado" ngModel #estado="ngModel">
+              <mat-option *ngFor="let estado of estados" [value]="estado.id"
+                (onSelectionChange)="buscarCidades(estado.id); cidade.value = ''">
+                {{estado.estado}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-4">
+          <mat-form-field>
+            <mat-label>Cidades</mat-label>
+            <mat-select [disabled]="cidades.length === 0" #cidade required name="cidade" ngModel #cidade="ngModel">
+              <mat-option *ngFor="let cidade of cidades" [value]="cidade.cidade">
+                {{cidade.cidade}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-4">
+          <mat-form-field class="input-fluid">
+            <input matInput placeholder="Bairro" required name="bairro" ngModel #bairro="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-6">
+          <mat-form-field class="input-fluid">
+            <input matInput placeholder="Rua" required name="rua" ngModel #rua="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-3">
+          <mat-form-field class="input-fluid">
+            <input type="number" matInput type="tel" placeholder="Número" required name="numero" ngModel
+              #numero="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-3">
+          <mat-form-field class="input-fluid">
+            <input type="number" matInput type="tel" placeholder="Complemento"  name="complemento" ngModel
+              #complemento="ngModel">
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-sm-4 offset-sm-8">
+          <button mat-raised-button type="submit" color="primary" [disabled]="!criacaoForm.valid">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<div class="flex-config">
+  <p class="vsm-titulo">Gestão de Clientes</p>
+  <button mat-raised-button color="primary" (click)="dialogCriacao = true">Cadastrar Cliente</button>
+</div>
+<p-table #tabela [value]="conteudoTabela.content" [rows]="conteudoTabela.numberOfElements"
+  [globalFilterFields]="['nome','cidade','sexo', 'pontuacao']">
+  <ng-template pTemplate="caption">
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+    <input type="text" pInputText size="50" placeholder="Global Filter"
+      (input)="tabela.filterGlobal($event.target.value, 'contains')" style="width:auto">
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Cidade</th>
+      <th>Sexo</th>
+      <th>Pontuação</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cli>
+    <tr>
+      <td>{{cli.nome}}</td>
+      <td>{{cli.endereco.cidade}}</td>
+      <td>{{cli.sexo}}</td>
+      <td>{{cli.pontuacao}}</td>
+      <td>
+        <div class="flex-config">
+          <button mat-raised-button color="primary" class="botao-opcao"><i class="fa fa-info"
+              aria-hidden="true"></i></button>
+          <button mat-raised-button color="primary" class="botao-opcao"><i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<br>
