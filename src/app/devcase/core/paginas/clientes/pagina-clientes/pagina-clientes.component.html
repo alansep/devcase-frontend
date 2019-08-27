@@ -110,8 +110,8 @@
     <tr>
       <th>Nome</th>
       <th>Localização</th>
-      <th style="width: 100px;">Pontuação</th>
-      <th>Outras Informações</th>
+      <th>Pontuação</th>
+      <th>Ações</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-cli>
@@ -120,10 +120,11 @@
       <td>{{cli.endereco.cidade}}/{{cli.endereco.estado}}</td>
       <td style="text-align: center;font-weight: 700">{{cli.pontuacao}}</td>
       <td>
-        <div class="flex-config">
-          <button mat-raised-button color="primary" class="botao-opcao" (click)="buscarCliente(cli.codigo)"><i
-              class="fa fa-info" aria-hidden="true"></i></button>
-        </div>
+        <button mat-raised-button color="primary" pTooltip="Verificar e Atualizar Cliente" tooltipPosition="top" (click)="buscarCliente(cli.codigo)"><i class="fa fa-info"
+            aria-hidden="true"></i></button>
+        <button mat-raised-button color="primary" style="margin-left: 3px" pTooltip="Registrar Venda" tooltipPosition="top" (click)="registrarVenda(cli.codigo)"><i
+            class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </button>
       </td>
     </tr>
   </ng-template>

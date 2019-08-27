@@ -23,6 +23,24 @@ export class RegrasService {
     });
   }
 
+  public buscarValorMinimo(): Observable<any> {
+    const header = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + this.localStorageService.lerToken());
+    return this.http.get<any>(environment.API_ENDERECO + '/regras/valor-minimo', {
+      headers: header
+    });
+  }
+
+  public adicionarRegra(valor: number, pontos: number): Observable<Regra> {
+    const header = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + this.localStorageService.lerToken());
+    return this.http.post<any>(environment.API_ENDERECO + '/regras?valor=' + valor + '&pontos=' + pontos, {}, {
+      headers: header
+    });
+  }
+
   public removerRegra(id: number): Observable<any> {
     const header = new HttpHeaders()
       .set('Content-Type', 'application/json')

@@ -1,11 +1,44 @@
-<p class="vsm-titulo">Regras de Pontuação</p>
+<p-dialog [(visible)]="dialogCriacaoRegra" [closable]="false" [modal]="true">
+  <p-header>
+    <div class="flex-config">
+      <span>Criar nova regra</span> <button mat-raised-button style="background-color:#d5343a; color:white;" (click)="dialogCriacaoRegra = false">Voltar</button>
+    </div>
+  </p-header>
+  <form #criacaoRegraForm="ngForm" (ngSubmit)="criarRegra(criacaoRegraForm)">
+    <div class="col-12">
+      <mat-form-field class="input-fluid">
+        <input matInput placeholder="Valor Mínimo em Reais" [value]="valorMinimo" disabled>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field class="input-fluid">
+        <input type="number" matInput placeholder="Valor Máximo em Reais" name="maximo" ngModel #maximo="ngModel" required>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field class="input-fluid">
+        <input type="number" matInput placeholder="Pontos para Regra" name="pontos" ngModel #pontos="ngModel" required>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="input-fluid" mat-raised-button color="primary"
+        [disabled]="!criacaoRegraForm.valid">Criar</button>
+    </div>
+  </form>
+</p-dialog>
+
+<div class="flex-config">
+  <p class="vsm-titulo">Regras de Pontuação</p>
+  <button mat-raised-button color="primary" (click)="dialogCriacaoRegra = true">Criar Regra</button>
+</div>
 <p-table #tabela [value]="regras">
   <ng-template pTemplate="header">
     <tr>
       <th>Código</th>
       <th>Valor Mínimo</th>
       <th>Valor Máximo</th>
-      <th>Ações</th>
+      <th>Pontos</th>
+      <th>Remover</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-reg>
@@ -13,7 +46,13 @@
       <td>{{reg.codigo}}</td>
       <td>{{reg.valorMinimo}}</td>
       <td>{{reg.valorMaximo}}</td>
-      <td><button mat-raised-button style="background-color:#d5343a; color:white" (click)="excluirRegra(reg.codigo)">X</button></td>
+      <td>{{reg.pontos}}</td>
+      <td>
+        <div class="flex-config" style="justify-content: center;">
+          <button mat-raised-button style="background-color:#d5343a; color:white"
+            (click)="excluirRegra(reg.codigo)">X</button>
+        </div>
+      </td>
     </tr>
   </ng-template>
 </p-table>

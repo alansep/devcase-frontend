@@ -10,9 +10,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AtualizacaoClienteComponent } from './pagina-clientes/atualizacao-cliente/atualizacao-cliente.component';
 import { MatCardModule } from '@angular/material/card';
+import { VendaClienteComponent } from './pagina-clientes/venda-cliente/venda-cliente.component';
+import { MatDatepickerModule,  } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
-  declarations: [PaginaClientesComponent, AtualizacaoClienteComponent],
+  declarations: [
+    PaginaClientesComponent,
+    AtualizacaoClienteComponent,
+    VendaClienteComponent
+  ],
   imports: [
     CommonModule,
     TableModule,
@@ -21,7 +29,10 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    TooltipModule
   ],
   exports: [PaginaClientesComponent],
   providers: [ClientesService]

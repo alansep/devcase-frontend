@@ -58,6 +58,10 @@ export class PaginaClientesComponent implements OnInit {
     this.router.navigate(['/clientes/atualizacao/' + id]);
   }
 
+  public registrarVenda(id: string){
+    this.router.navigate(['/clientes/' + id + '/venda']);
+  }
+
   public cadastrar(dados: any, formulario: FormGroup) {
     const cliente = this.construirObjetoDeCliente(dados);
     this.clientesService.cadastrarCliente(cliente).subscribe(() => {

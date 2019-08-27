@@ -10,6 +10,7 @@ import { PaginaClientesComponent } from '../paginas/clientes/pagina-clientes/pag
 import { AtualizacaoClienteComponent } from '../paginas/clientes/pagina-clientes/atualizacao-cliente/atualizacao-cliente.component';
 import { PaginaRegrasComponent } from '../paginas/regras/pagina-regras/pagina-regras.component';
 import { RegrasModule } from '../paginas/regras/regras.module';
+import { VendaClienteComponent } from '../paginas/clientes/pagina-clientes/venda-cliente/venda-cliente.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'home', component: PaginaHomeComponent, canActivate: [AuthGuard]},
     {path: 'clientes', component: PaginaClientesComponent, canActivate: [AuthGuard]},
     {path: 'clientes/atualizacao/:id', component: AtualizacaoClienteComponent, canActivate: [AuthGuard]},
+    {path: 'clientes/:id/venda', component: VendaClienteComponent, canActivate: [AuthGuard]},
     {path: 'regras', component: PaginaRegrasComponent, canActivate: [AuthGuard]},
     {path: '', component: PaginaLoginComponent},
 ];
